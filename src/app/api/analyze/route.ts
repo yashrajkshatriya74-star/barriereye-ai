@@ -16,15 +16,44 @@ export async function POST(req: NextRequest) {
     const response = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
-        {
-          role: "user",
-          content: [
-            {
-              type: "image_url",
-              image_url: {
-                url: `data:image/jpeg;base64,${image}`,
-              },
-            },
+  {
+    role: "system",
+    content: `
+You are an accessibility analysis AI for streets and sidewalks.
+
+Analyze the image and return ONLY valid JSON in this exact format:
+
+{
+  "danger_level": "LOW | MEDIUM | HIGH",
+  "barriers": ["string", "string"],
+  "hazards": "string",
+  "recommendations": ["string", "string"],
+  "wheelchair_accessible": true or false
+}
+
+Rules:
+- Return ONLY valid JSON
+- No explanations
+- No extra text
+- No markdown
+`
+  },
+  {
+    role: "user",
+    content: [
+      {
+        type: "text",
+        text: "Analyze this street image for accessibility barriers."
+      },
+      {
+        type: "image_url",
+        image_url: {
+          url: `data:image/jpeg;base64,${image}`
+        }
+      }
+    ]
+  }
+]
             {
               type: "text",
               text: `Eres un experto en accesibilidad urbana. Analiza esta imagen de calle o banqueta e identifica:
