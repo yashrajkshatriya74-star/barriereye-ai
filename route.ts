@@ -27,13 +27,13 @@ export async function POST(req: NextRequest) {
             },
             {
               type: "text",
-              text: `You are an accessibility expert. Analyze this street/sidewalk image and identify:
-1. Accessibility barriers (broken pavements, missing curb cuts, obstacles, etc.)
-2. Danger level: LOW / MEDIUM / HIGH
-3. Recommendations to fix the issues
-4. Is this location wheelchair friendly? YES / NO
+              text: `Eres un experto en accesibilidad urbana. Analiza esta imagen de calle o banqueta e identifica:
+1. Barreras de accesibilidad (banquetas dañadas, obstáculos, falta de rampas, etc.)
+2. Nivel de peligro: BAJO / MEDIO / ALTO
+3. Recomendaciones para resolver los problemas
+4. ¿Es este lugar accesible para sillas de ruedas? SI / NO
 
-Be specific and concise.`,
+Se especifico y conciso. Responde en español.`,
             },
           ],
         },
